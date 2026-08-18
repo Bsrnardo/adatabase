@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16
+    container_name: adatabase
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: unodostres
+      POSTGRES_DB: LaRemise
+    ports:
+      - "5434:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
