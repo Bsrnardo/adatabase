@@ -1,0 +1,36 @@
+nom_article,categorie,etat_article,statut,poids_article,prix_article,id_depot,id_vente
+Table en chêne,mobilier,bon état,rayon,15000,250,1,
+Chaise vintage,mobilier,à réparer,reparation,5000,75,2,
+Machine à laver,electromenager,bon état,rayon,45000,350,3,
+Tome 1 Harry Potter,livres,bon état,rayon,500,10,4,
+Assiettes porcelaine,vaisselle,bon état,rayon,2000,45,5,
+Canapé 3 places,mobilier,à réparer,reparation,60000,150,6,
+Ordinateur portable,electromenager,bon état,rayon,2500,500,7,
+Vélo course,jouets,bon état,rayon,12000,200,8,
+Tondeuse,bricolage,hors service,recyclage,18000,0,9,
+Robe de mariee,textile,bon état,rayon,1000,120,10,
+Micro-ondes,electromenager,à réparer,reparation,8000,50,11,
+Jeu de société,jouets,bon état,rayon,1500,25,12,
+Bureau moderne,mobilier,bon état,rayon,25000,180,13,1
+Réfrigérateur,electromenager,bon état,rayon,60000,400,14,2
+Encyclopédie,livres,bon état,rayon,3000,30,15,3
+Tableau abstrait,textile,bon état,rayon,2000,150,1,4
+Lampadaire,mobilier,à réparer,reparation,3000,40,2,5
+Perceuse,bricolage,bon état,rayon,2500,60,3,6
+Aspirateur,electromenager,hors service,recyclage,7000,0,4,
+Chaussures sport,textile,bon état,rayon,800,35,5,7
+Pouf design,mobilier,bon état,rayon,4000,80,6,8
+Radio,electromenager,à réparer,reparation,1500,25,7,9
+Livre cuisine,livres,bon état,rayon,400,8,8,10
+Panier pique-nique,vaisselle,bon état,rayon,3000,55,9,11
+Trottinette,jouets,à réparer,reparation,5000,45,10,12
+Lave-vaisselle,electromenager,bon état,rayon,35000,300,11,
+Table basse,mobilier,à réparer,reparation,12000,65,12,
+Roman policier,livres,bon état,rayon,300,5,13,
+Tapis persan,textile,bon état,rayon,5000,200,14,
+Barbecue,bricolage,bon état,rayon,15000,120,15,
+Console jeux,jouets,bon état,rayon,2000,80,16,
+Armoire ancienne,mobilier,à réparer,reparation,80000,250,17,
+Sèche-linge,electromenager,hors service,recyclage,40000,0,18,
+BD Tintin,livres,bon état,rayon,500,15,19,
+Coussin décoratif,textile,bon état,rayon,300,8,20,
