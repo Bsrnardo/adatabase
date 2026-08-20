@@ -49,7 +49,7 @@ SELECT
     SUM(CASE WHEN r.resultat = 'reussie' THEN 1 ELSE 0 END) AS reussies,
     SUM(CASE WHEN r.resultat = 'echouee' THEN 1 ELSE 0 END) AS echouees,
     ROUND(
-        SUM(CASE WHEN r.resultat = 'reussie' THEN 1 ELSE 0 END) * 100.0 / COUNT(*)
+        SUM(CASE WHEN r.resultat = 'reussie' THEN 1 ELSE 0 END) * 100 / COUNT(*)
     ) AS taux_reussite
 FROM reparation r
 JOIN benevole b ON r.id_benevole = b.id_benevole
@@ -88,11 +88,10 @@ WHERE competence.nom_competence = 'electricite';
 
 -- Quels objets sont en rayon depuis plus de six mois et devraient être sortis ?
 SELECT
-    nom_article,
-    statut,
-    (CURRENT_DATE - d.date_depot) AS article_en_rayon
+    nom_article as articles_en_rayon,
+    (CURRENT_DATE - d.date_depot) AS jours_en_rayon
 FROM
     article a
 JOIN depot d ON a.id_depot = d.id_depot
 WHERE
-    statut = 'rayon';
+    statut = 'rayon' AND (CURRENT_DATE - d.date_depot) > 180;
