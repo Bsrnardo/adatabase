@@ -46,3 +46,19 @@ FROM benevole
 JOIN benevole_competence ON benevole.id_benevole = benevole_competence.id_benevole
 JOIN competence ON benevole_competence.id_competence = competence.id_competence
 WHERE competence.nom_competence = 'electricite';
+
+
+-- Quel est le taux de réussite des réparations, par bénévole
+SELECT
+    b.nom_benevole,
+    b.prenom_benevole,
+    COUNT(*) AS total_reparations,
+    SUM(CASE WHEN r.resultat = 'reussie' THEN 1 ELSE 0 END) AS reussies,
+    SUM(CASE WHEN r.resultat = 'echouee' THEN 1 ELSE 0 END) AS echouees,
+    ROUND(
+        SUM(CASE WHEN r.resultat = 'reussie' THEN 1 ELSE 0 END) * 100.0 / COUNT(*)
+    ) AS taux_reussite
+FROM reparation r
+JOIN benevole b ON r.id_benevole = b.id_benevole
+GROUP BY b.id_benevole, b.nom_benevole, b.prenom_benevole
+ORDER BY total_reparations DESC;

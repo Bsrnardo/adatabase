@@ -23,26 +23,22 @@ CREATE TABLE donateur (
   telephone TEXT NOT NULL,
   statut_adhesion BOOLEAN
 );
-
 CREATE TABLE adherent (
   id_adherent SERIAL PRIMARY KEY,
   nom_adherent VARCHAR(50) NOT NULL,
   prenom_adherent VARCHAR(50) NOT NULL,
   date_affiliation DATE NOT NULL
 );
-
 CREATE TABLE benevole (
   id_benevole SERIAL PRIMARY KEY,
   nom_benevole VARCHAR(50) NOT NULL,
   prenom_benevole VARCHAR(50) NOT NULL,
   date_affiliation DATE NOT NULL
 );
-
 CREATE TABLE competence (
   id_competence SERIAL PRIMARY KEY,
   nom_competence VARCHAR(50) NOT NULL
 );
-
 CREATE TABLE depot (
   id_depot SERIAL PRIMARY KEY,
   id_donateur INTEGER NOT NULL,
@@ -50,7 +46,6 @@ CREATE TABLE depot (
   date_depot DATE NOT NULL,
   FOREIGN KEY (id_donateur) REFERENCES donateur(id_donateur)
 );
-
 CREATE TABLE vente (
   id_vente SERIAL PRIMARY KEY,
   date_vente DATE NOT NULL,
@@ -58,7 +53,6 @@ CREATE TABLE vente (
   id_adherent INTEGER NOT NULL,
   FOREIGN KEY (id_adherent) REFERENCES adherent(id_adherent)
 );
-
 CREATE TABLE ateliers (
   id_atelier SERIAL PRIMARY KEY,
   nom_atelier VARCHAR(120) NOT NULL,
@@ -68,7 +62,6 @@ CREATE TABLE ateliers (
   id_benevole INTEGER NOT NULL,
   FOREIGN KEY (id_benevole) REFERENCES benevole(id_benevole)
 );
-
 CREATE TABLE benevole_competence (
   id_benevole INTEGER NOT NULL,
   id_competence INTEGER NOT NULL,
@@ -76,7 +69,6 @@ CREATE TABLE benevole_competence (
   FOREIGN KEY (id_benevole) REFERENCES benevole(id_benevole),
   FOREIGN KEY (id_competence) REFERENCES competence(id_competence)
 );
-
 CREATE TABLE article (
   id_article SERIAL PRIMARY KEY,
   nom_article VARCHAR(150) NOT NULL,
@@ -90,7 +82,6 @@ CREATE TABLE article (
   FOREIGN KEY (id_depot) REFERENCES depot(id_depot),
   FOREIGN KEY (id_vente) REFERENCES vente(id_vente)
 );
-
 CREATE TABLE inscription (
   id_inscription SERIAL PRIMARY KEY,
   date_inscription DATE NOT NULL,
@@ -100,7 +91,6 @@ CREATE TABLE inscription (
   FOREIGN KEY (id_atelier) REFERENCES ateliers(id_atelier),
   FOREIGN KEY (id_adherent) REFERENCES adherent(id_adherent)
 );
-
 CREATE TABLE reparation (
   id_reparation SERIAL PRIMARY KEY,
   date_entree DATE NOT NULL,
