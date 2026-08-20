@@ -41,6 +41,33 @@ SELECT
 FROM reparation
 WHERE date_entree BETWEEN '2024-01-01' AND '2024-12-31';
 
+-- 05 Quel est le taux de réussite des réparations, par bénévole
+SELECT
+    b.nom_benevole,
+    b.prenom_benevole,
+    COUNT(*) AS total_reparations,
+    SUM(CASE WHEN r.resultat = 'reussie' THEN 1 ELSE 0 END) AS reussies,
+    SUM(CASE WHEN r.resultat = 'echouee' THEN 1 ELSE 0 END) AS echouees,
+    ROUND(
+        SUM(CASE WHEN r.resultat = 'reussie' THEN 1 ELSE 0 END) * 100.0 / COUNT(*)
+    ) AS taux_reussite
+FROM reparation r
+JOIN benevole b ON r.id_benevole = b.id_benevole
+GROUP BY b.id_benevole, b.nom_benevole, b.prenom_benevole
+ORDER BY total_reparations DESC;
+
+-- 06 Quelles personnes nous ont fait plus de trois dépôts ?
+SELECT
+    d.prenom_donateur,
+    d.nom_donateur,
+    COUNT(de.id_donateur) total_depots
+FROM
+    depot de
+JOIN donateur d ON de.id_donateur = d.id_donateur
+GROUP BY d.prenom_donateur, d.nom_donateur
+-- HAVING COUNT(de.id_donateur) > 3
+ORDER BY total_depots DESC;
+
 -- 07 Quel poids total avons-nous détourné de la déchetterie (tout ce qui n'est pas recyclé) ?
 SELECT 
     ROUND(SUM(poids_article)) / 1000.0 AS poids_kg
@@ -58,20 +85,6 @@ JOIN benevole_competence ON benevole.id_benevole = benevole_competence.id_benevo
 JOIN competence ON benevole_competence.id_competence = competence.id_competence
 WHERE competence.nom_competence = 'electricite';
 
--- 05 Quel est le taux de réussite des réparations, par bénévole
-SELECT
-    b.nom_benevole,
-    b.prenom_benevole,
-    COUNT(*) AS total_reparations,
-    SUM(CASE WHEN r.resultat = 'reussie' THEN 1 ELSE 0 END) AS reussies,
-    SUM(CASE WHEN r.resultat = 'echouee' THEN 1 ELSE 0 END) AS echouees,
-    ROUND(
-        SUM(CASE WHEN r.resultat = 'reussie' THEN 1 ELSE 0 END) * 100.0 / COUNT(*)
-    ) AS taux_reussite
-FROM reparation r
-JOIN benevole b ON r.id_benevole = b.id_benevole
-GROUP BY b.id_benevole, b.nom_benevole, b.prenom_benevole
-ORDER BY total_reparations DESC;
 
 -- Quels objets sont en rayon depuis plus de six mois et devraient être sortis ?
 SELECT
