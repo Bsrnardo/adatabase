@@ -6,6 +6,17 @@ FROM article a
 INNER JOIN depot d ON a.id_depot = d.id_depot
 WHERE d.date_depot BETWEEN '2024-02-01' AND '2024-02-29';
 
+-- 02 Quels objets sont actuellement en rayon, et depuis combien de temps ?
+SELECT
+    nom_article,
+    statut,
+    (CURRENT_DATE - d.date_depot) AS temps_rayon_jours
+FROM
+    article a
+JOIN depot d ON a.id_depot = d.id_depot
+WHERE
+    statut = 'rayon';
+
 -- 03 Quelle catégorie se vend le mieux ? Laquelle rapporte le plus ?
 SELECT 
     categorie,
@@ -47,8 +58,7 @@ JOIN benevole_competence ON benevole.id_benevole = benevole_competence.id_benevo
 JOIN competence ON benevole_competence.id_competence = competence.id_competence
 WHERE competence.nom_competence = 'electricite';
 
-
--- Quel est le taux de réussite des réparations, par bénévole
+-- 05 Quel est le taux de réussite des réparations, par bénévole
 SELECT
     b.nom_benevole,
     b.prenom_benevole,
@@ -62,3 +72,14 @@ FROM reparation r
 JOIN benevole b ON r.id_benevole = b.id_benevole
 GROUP BY b.id_benevole, b.nom_benevole, b.prenom_benevole
 ORDER BY total_reparations DESC;
+
+-- Quels objets sont en rayon depuis plus de six mois et devraient être sortis ?
+SELECT
+    nom_article,
+    statut,
+    (CURRENT_DATE - d.date_depot) AS article_en_rayon
+FROM
+    article a
+JOIN depot d ON a.id_depot = d.id_depot
+WHERE
+    statut = 'rayon';
